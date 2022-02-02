@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block body %}
+ 
+
+    <div class="container my-3" style='width: 800px;'>
+        <h2>Update Data:</h2>
+
+        <form action="/update/{{todo.sno}}" method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="text" name="fullname" value={{todo.full_name}} aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value={{todo.email}} aria-describedby="emailHelp"
+                    >
+            </div>
+            <div class="mb-3">
+                <label for="number" class="form-label">Mobile</label>
+                <input type="number" class="form-control" id="number" name="mobile" value={{todo.mobile}} aria-describedby="emailHelp"
+                    >
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+
+    {% endblock %}
+

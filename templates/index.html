@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block body %}
+ 
+
+    <div class="container my-3" style='width: 800px;'>
+        <h2>Insert Data:</h2>
+
+        <form action="/" method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="text" name="fullname" aria-describedby="emailHelp"
+                    placeholder="Enter Your Full Name">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+                    placeholder="Enter Your Email Address">
+            </div>
+            <div class="mb-3">
+                <label for="number" class="form-label">Mobile</label>
+                <input type="number" class="form-control" id="number" name="mobile" aria-describedby="emailHelp"
+                    placeholder="Enter Your Mobile">
+            </div>
+            <button type="submit" class="btn btn-primary">Insert</button>
+        </form>
+    </div>
+
+    <div class="container my-3 mx-auto " style='width: 800px;'>
+        {% if view|length ==0 %}
+        <div class="alert alert-dark" role="alert">
+            No Records in Database, please add first!          </div>
+          
+        {% else %}
+        <h2>Inserted Data:</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">SNo</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Update or Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in view %}
+                <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{todo.full_name}}</td>
+                    <td>{{todo.email}}</td>
+                    <td>{{todo.mobile}}</td>
+                    <td><a href="/update/{{todo.sno}}"><span class="glyphicon glyphicon-pencil mx-5"></span></a>
+                        <a href="/delete/{{todo.sno}}"><span class="glyphicon glyphicon-remove mx-1"></span></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+    </div>
+
+    {% endblock %}
+
